@@ -11,7 +11,7 @@ class App extends Component {
         PLAYER_TWO_SYMBOL: "O",
         currentTurn: "X",
         winnerTurn : "O",
-        drawTurn: "Draw",
+        turn: " ",
         board: [
           "", "", "", "", "", "", "", "", ""
         ]
@@ -19,7 +19,7 @@ class App extends Component {
     }
 
     beforeDraw(){
-      drawTurn : " "
+      Turn : " "
     }
 
     handleClick(index) {
@@ -29,7 +29,7 @@ class App extends Component {
             board: this.state.board,
             currentTurn: this.state.currentTurn === this.state.PLAYER_ONE_SYMBOL ? this.state.PLAYER_TWO_SYMBOL : this.state.PLAYER_ONE_SYMBOL,
             winnerTurn: this.state.currentTurn === this.state.PLAYER_TWO_SYMBOL ? this.state.PLAYER_TWO_SYMBOL : this.state.PLAYER_ONE_SYMBOL,
-            draw: this.beforeDraw(),
+            turn: this.beforeDraw(),
             winner: this.checkForWinner(),
           })
         }
@@ -53,8 +53,8 @@ render() {
   return (
     <div className="app-container">
       {<h3>{`Welcome to Reactive Tic Tac Toe`}</h3>}
-      {this.state.winner ? <h1>{`The winner is ${this.state.winnerTurn}`}</h1> : null}
-      {this.state.draw ? <h2>{`${this.state.drawTurn}`}</h2> : <h2>{` ${this.state.currentTurn} 's Turn`}</h2> }
+      {this.state.winner ? <h1>{`The winner is ${this.state.winnerTurn}`}</h1> : <h2>{` ${this.state.currentTurn} 's Turn`}</h2>}
+  
       <div className="board">
       {this.state.board.map((cell, index) => {
         return <div onClick={() => this.handleClick(index)} className="square">{cell}</div>;
