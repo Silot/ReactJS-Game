@@ -10,6 +10,7 @@ class App extends Component {
         PLAYER_ONE_SYMBOL: "X",
         PLAYER_TWO_SYMBOL: "O",
         currentTurn: "X",
+        nextTurn : "O",
         board: [
           "", "", "", "", "", "", "", "", ""
         ]
@@ -22,6 +23,7 @@ class App extends Component {
           this.setState({
             board: this.state.board,
             currentTurn: this.state.currentTurn === this.state.PLAYER_ONE_SYMBOL ? this.state.PLAYER_TWO_SYMBOL : this.state.PLAYER_ONE_SYMBOL,
+            nextTurn: this.state.currentTurn === this.state.PLAYER_TWO_SYMBOL ? this.state.PLAYER_TWO_SYMBOL : this.state.PLAYER_ONE_SYMBOL,
             winner: this.checkForWinner(),
           })
         }
@@ -44,7 +46,7 @@ checkForWinner() {
 render() {
   return (
     <div className="app-container">
-      {this.state.winner ? <h1>{`The winner is ${this.state.currentTurn}`}</h1> : null}
+      {this.state.winner ? <h1>{`The winner is ${this.state.nextTurn}`}</h1> : null}
       <div className="board">
       {this.state.board.map((cell, index) => {
         return <div onClick={() => this.handleClick(index)} className="square">{cell}</div>;
