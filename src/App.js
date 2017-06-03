@@ -44,7 +44,7 @@ checkForWinner() {
 render() {
   return (
     <div className="app-container">
-      {this.state.winner ? <h1>{`The winner is ${this.state.winner}`}</h1> : null}
+      {this.state.winner ? <h1>{`The winner is ${this.state.currentTurn}`}</h1> : null}
       <div className="board">
       {this.state.board.map((cell, index) => {
         return <div onClick={() => this.handleClick(index)} className="square">{cell}</div>;
