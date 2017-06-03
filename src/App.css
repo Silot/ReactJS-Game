@@ -25,16 +25,17 @@
 
 .board{
   display: flex;
-  width: 600px;
-  height: 600px;
+  width: 300px;
+  height: 300px;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+  float:left;
 }
 
 .square{
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: 100px;
   box-sizing: border-box;
   border: 5px solid black;
   font-size: 5em;
@@ -46,4 +47,18 @@
 .square:hover {
   cursor:pointer;
   background-color: #80cd92;
+}
+
+.app-container{
+  padding-left: 35%;
+}
+
+h2{
+  color: #80cd92;
+  padding-left:10%;
+}
+
+h1{
+  color: red;
+  padding-left: 5%;
 }

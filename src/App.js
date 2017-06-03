@@ -10,11 +10,16 @@ class App extends Component {
         PLAYER_ONE_SYMBOL: "X",
         PLAYER_TWO_SYMBOL: "O",
         currentTurn: "X",
-        nextTurn : "O",
+        winnerTurn : "O",
+        drawTurn: "Draw",
         board: [
           "", "", "", "", "", "", "", "", ""
         ]
       }
+    }
+
+    beforeDraw(){
+      drawTurn : " "
     }
 
     handleClick(index) {
@@ -23,7 +28,8 @@ class App extends Component {
           this.setState({
             board: this.state.board,
             currentTurn: this.state.currentTurn === this.state.PLAYER_ONE_SYMBOL ? this.state.PLAYER_TWO_SYMBOL : this.state.PLAYER_ONE_SYMBOL,
-            nextTurn: this.state.currentTurn === this.state.PLAYER_TWO_SYMBOL ? this.state.PLAYER_TWO_SYMBOL : this.state.PLAYER_ONE_SYMBOL,
+            winnerTurn: this.state.currentTurn === this.state.PLAYER_TWO_SYMBOL ? this.state.PLAYER_TWO_SYMBOL : this.state.PLAYER_ONE_SYMBOL,
+            draw: this.beforeDraw(),
             winner: this.checkForWinner(),
           })
         }
@@ -36,7 +42,7 @@ checkForWinner() {
     return winningCombos.find(function(combo) {
       if(symbols[combo[0]] !== "" && symbols[combo[1]] !== ""  && symbols[combo[2]] !== ""  && symbols[combo[0]] === symbols[combo[1]] && symbols[combo[1]] === symbols[combo[2]]) {
         return currentTurn
-      } else {
+      }else{
         return false
       }
     })
@@ -46,7 +52,9 @@ checkForWinner() {
 render() {
   return (
     <div className="app-container">
-      {this.state.winner ? <h1>{`The winner is ${this.state.nextTurn}`}</h1> : null}
+      {<h3>{`Welcome to Reactive Tic Tac Toe`}</h3>}
+      {this.state.winner ? <h1>{`The winner is ${this.state.winnerTurn}`}</h1> : null}
+      {this.state.draw ? <h2>{`${this.state.drawTurn}`}</h2> : <h2>{` ${this.state.currentTurn} 's Turn`}</h2> }
       <div className="board">
       {this.state.board.map((cell, index) => {
         return <div onClick={() => this.handleClick(index)} className="square">{cell}</div>;
